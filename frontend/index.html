@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Green Coffee Café — Organic, Artisan, Conscious</title>
+  <meta name="description" content="Green Coffee Café — Sri Lanka's finest artisan coffee experience with sustainably sourced, single-origin beans.">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ════════════ NAVBAR ════════════ -->
+<nav id="mainNav" class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" onclick="navigate('home')" style="cursor:pointer">
+      <span class="brand-leaf">🌿</span>
+      <span>Green Coffee</span>
+    </a>
+
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" data-page="home" onclick="navigate('home')">Home</a></li>
+        <li class="nav-item"><a class="nav-link" data-page="about" onclick="navigate('about')">About</a></li>
+        <li class="nav-item"><a class="nav-link" data-page="menu" onclick="navigate('menu')">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" data-page="services" onclick="navigate('services')">Services</a></li>
+        <li class="nav-item"><a class="nav-link" data-page="contact" onclick="navigate('contact')">Contact</a></li>
+      </ul>
+
+      <div class="d-flex align-items-center gap-2" id="navLoggedOut">
+        <a class="nav-link" data-page="login" onclick="navigate('login')">Sign In</a>
+        <button class="btn-nav-cta nav-link" onclick="navigate('register')">Join Us</button>
+      </div>
+
+      <div class="d-flex align-items-center gap-3" id="navLoggedIn" style="display:none!important">
+        <span class="nav-user-name">👋 <span id="navUserName"></span></span>
+        <button class="btn-nav-cta nav-link" onclick="goToDashboard()">Dashboard</button>
+        <button class="nav-link" onclick="handleLogout()" style="border:none;background:none;color:var(--text-light);font-size:0.85rem">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════ HOME PAGE ════════════ -->
+<div id="page-home" class="page">
+
+  <!-- Hero -->
+  <section class="hero-section">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="container position-relative">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div class="hero-tag">
+            <span>🌱</span> Sustainably Sourced · Single Origin
+          </div>
+          <h1 class="hero-title">
+            Every Cup Tells<br>
+            a <span class="italic">Story</span>
+          </h1>
+          <p class="hero-subtitle">
+            From mountain farms to your hands — we craft extraordinary coffee experiences with mindful sourcing, expert roasting, and genuine craft.
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <button class="btn-cream" onclick="navigate('menu')">
+              Explore Our Menu
+            </button>
+            <button class="btn-outline-green" style="border-color:rgba(255,255,255,0.4);color:var(--white)" onclick="navigate('about')">
+              Our Story →
+            </button>
+          </div>
+          <div class="hero-stats">
+            <div>
+              <span class="hero-stat-num">12+</span>
+              <span class="hero-stat-label">Origins</span>
+            </div>
+            <div>
+              <span class="hero-stat-num">4.9</span>
+              <span class="hero-stat-label">Rating</span>
+            </div>
+            <div>
+              <span class="hero-stat-num">8k+</span>
+              <span class="hero-stat-label">Members</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="hero-image-frame">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=700&h=500&fit=crop" alt="Artisan Coffee">
+            <div class="hero-image-badge">
+              <span class="hero-badge-icon">⭐</span>
+              <div class="hero-badge-text">
+                <strong>Award Winning</strong>
+                <span>Best Café 2024 · Colombo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Strips -->
+  <section class="section-pad-sm bg-cream">
+    <div class="container">
+      <div class="row g-4 text-center">
+        <div class="col-6 col-md-3">
+          <div class="py-2">
+            <div style="font-size:2rem;margin-bottom:0.5rem">🌱</div>
+            <div style="font-weight:600;color:var(--green-deep);font-size:0.9rem">100% Organic</div>
+            <div style="font-size:0.8rem;color:var(--text-light)">Farm certified</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="py-2">
+            <div style="font-size:2rem;margin-bottom:0.5rem">☕</div>
+            <div style="font-weight:600;color:var(--green-deep);font-size:0.9rem">Expert Baristas</div>
+            <div style="font-size:0.8rem;color:var(--text-light)">SCA certified</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="py-2">
+            <div style="font-size:2rem;margin-bottom:0.5rem">🚲</div>
+            <div style="font-weight:600;color:var(--green-deep);font-size:0.9rem">Zero Waste</div>
+            <div style="font-size:0.8rem;color:var(--text-light)">Eco packaging</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="py-2">
+            <div style="font-size:2rem;margin-bottom:0.5rem">🤝</div>
+            <div style="font-weight:600;color:var(--green-deep);font-size:0.9rem">Fair Trade</div>
+            <div style="font-size:0.8rem;color:var(--text-light)">Direct sourcing</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Menu -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="row section-header align-items-end">
+        <div class="col-md-8">
+          <span class="section-tag">Our Menu</span>
+          <h2 class="section-title">Fan Favourites</h2>
+          <div class="section-divider"></div>
+          <p class="section-subtitle">Handpicked by our community — the most loved drinks and bites at Green Coffee Café.</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+          <button class="btn-outline-green" onclick="navigate('menu')">Full Menu →</button>
+        </div>
+      </div>
+      <div class="row g-4" id="featuredMenuGrid">
+        <!-- Loaded by JS -->
+        <div class="col-12 text-center py-4"><div class="spinner-border text-success" role="status"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Strip -->
+  <section class="section-pad bg-cream">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5">
+          <div style="position:relative">
+            <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=550&h=500&fit=crop" alt="Our Story" style="border-radius:24px;width:100%;box-shadow:var(--shadow-mid)">
+            <div style="position:absolute;bottom:-20px;right:-20px;background:var(--green-deep);color:white;border-radius:18px;padding:1.2rem 1.5rem;text-align:center">
+              <div style="font-family:var(--font-display);font-size:2rem;font-weight:700">2016</div>
+              <div style="font-size:0.75rem;opacity:0.75;letter-spacing:0.08em;text-transform:uppercase">Est.</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <span class="section-tag">Our Story</span>
+          <h2 class="section-title">Born from a Passion<br>for Exceptional Coffee</h2>
+          <div class="section-divider"></div>
+          <p style="color:var(--text-mid);line-height:1.8;margin-bottom:1.5rem">
+            Green Coffee Café began in 2016 with a simple belief: that coffee should be more than a habit — it should be an experience. Nestled in the heart of Colombo, we source directly from mountain estates across Sri Lanka, Ethiopia, and Colombia.
+          </p>
+          <p style="color:var(--text-mid);line-height:1.8;margin-bottom:2rem">
+            Every bean is hand-selected, every roast calibrated to perfection. We're not just a café — we're a community of people who believe that great coffee can change your day.
+          </p>
+          <button class="btn-primary-green" onclick="navigate('about')">Read Our Full Story →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Testimonials</span>
+        <h2 class="section-title">What Our Community Says</h2>
+        <div class="section-divider mx-auto"></div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="testimonial-card h-100">
+            <p style="color:var(--text-mid);line-height:1.7;padding-top:1.5rem;font-size:0.95rem">"The Nitro Cold Brew is absolutely divine. I've tried coffee in 20 countries and this is genuinely world-class. The space is gorgeous too."</p>
+            <div class="mt-3 d-flex align-items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face" style="width:44px;height:44px;border-radius:50%;object-fit:cover" alt="">
+              <div>
+                <div style="font-weight:600;font-size:0.9rem;color:var(--green-deep)">Amara Silva</div>
+                <div style="font-size:0.78rem;color:var(--text-light)">Colombo</div>
+              </div>
+              <div class="ms-auto"><span class="star">★★★★★</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card h-100">
+            <p style="color:var(--text-mid);line-height:1.7;padding-top:1.5rem;font-size:0.95rem">"Attended their pour-over workshop and left knowing so much more about coffee. The baristas are incredibly knowledgeable and passionate."</p>
+            <div class="mt-3 d-flex align-items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" style="width:44px;height:44px;border-radius:50%;object-fit:cover" alt="">
+              <div>
+                <div style="font-weight:600;font-size:0.9rem;color:var(--green-deep)">Rajan Perera</div>
+                <div style="font-size:0.78rem;color:var(--text-light)">Kandy</div>
+              </div>
+              <div class="ms-auto"><span class="star">★★★★★</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card h-100">
+            <p style="color:var(--text-mid);line-height:1.7;padding-top:1.5rem;font-size:0.95rem">"My remote work HQ. The WiFi is great, the atmosphere is inspiring, and the Flat White keeps me going. Loyalty points are a lovely bonus!"</p>
+            <div class="mt-3 d-flex align-items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=60&h=60&fit=crop&crop=face" style="width:44px;height:44px;border-radius:50%;object-fit:cover" alt="">
+              <div>
+                <div style="font-weight:600;font-size:0.9rem;color:var(--green-deep)">Nisha Jayawardena</div>
+                <div style="font-size:0.78rem;color:var(--text-light)">Ratnapura</div>
+              </div>
+              <div class="ms-auto"><span class="star">★★★★★</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="cta-banner">
+        <span class="section-tag" style="color:var(--green-pale)">Join Our Community</span>
+        <h2 style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);color:white;margin-bottom:1rem">
+          Start Earning Loyalty<br>Rewards Today
+        </h2>
+        <p style="color:rgba(255,255,255,0.75);max-width:500px;margin:0 auto 2rem;font-size:1rem">
+          Every purchase earns you points. Redeem for free drinks, exclusive blends, and member-only events.
+        </p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <button class="btn-cream" onclick="navigate('register')">Create Free Account →</button>
+          <button class="btn-outline-green" style="border-color:rgba(255,255,255,0.4);color:white" onclick="navigate('about')">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ════════════ ABOUT PAGE ════════════ -->
+<div id="page-about" class="page">
+  <div class="container section-pad">
+    <!-- Header -->
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-lg-7">
+        <span class="section-tag">Who We Are</span>
+        <h1 class="section-title" style="font-size:clamp(2.5rem,5vw,4rem)">Our Story</h1>
+        <div class="section-divider mx-auto"></div>
+        <p class="section-subtitle mt-3">A love letter to coffee, community, and our beautiful island.</p>
+      </div>
+    </div>
+
+    <!-- Story -->
+    <div class="row align-items-center g-5 mb-5">
+      <div class="col-lg-6">
+        <img src="https://images.unsplash.com/photo-1511081692775-05d0f180a065?w=600&h=450&fit=crop" alt="Our Café" style="border-radius:24px;width:100%;box-shadow:var(--shadow-mid)">
+      </div>
+      <div class="col-lg-6">
+        <h3 style="font-family:var(--font-display);color:var(--green-deep);margin-bottom:1rem">From a Tiny Roastery to a Community Hub</h3>
+        <p style="color:var(--text-mid);line-height:1.8;margin-bottom:1rem">It started in 2016 with a roasting drum, a leased garage, and an obsession with the perfect cup. Founders Kavya and Dinesh left their corporate careers to pursue what they truly loved — connecting people through exceptional coffee.</p>
+        <p style="color:var(--text-mid);line-height:1.8;margin-bottom:1.5rem">Today, Green Coffee Café spans two locations in Colombo and Kandy, with direct relationships with 15 farming families across Sri Lanka and East Africa.</p>
+        <div class="row g-3">
+          <div class="col-6">
+            <div class="card-green">
+              <div style="font-family:var(--font-display);font-size:2rem;color:var(--green-deep);font-weight:700">15+</div>
+              <div style="font-size:0.8rem;color:var(--text-light)">Farm partners worldwide</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card-green">
+              <div style="font-family:var(--font-display);font-size:2rem;color:var(--green-deep);font-weight:700">8k+</div>
+              <div style="font-size:0.8rem;color:var(--text-light)">Happy members</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Values -->
+    <div class="bg-cream rounded-4 p-5 mb-5">
+      <div class="text-center mb-4">
+        <span class="section-tag">Our Values</span>
+        <h2 class="section-title">What Drives Us</h2>
+        <div class="section-divider mx-auto"></div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card-green h-100">
+            <div class="feature-icon-wrap">🌱</div>
+            <h5>Sustainability First</h5>
+            <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.7">Zero-waste operations, compostable packaging, carbon-neutral delivery — our planet deserves better, and we're committed to leading the way.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-green h-100">
+            <div class="feature-icon-wrap">🤝</div>
+            <h5>Direct Trade</h5>
+            <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.7">We pay 30% above Fair Trade minimums, visit every farm annually, and co-invest in community infrastructure projects.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-green h-100">
+            <div class="feature-icon-wrap">☕</div>
+            <h5>Craft Excellence</h5>
+            <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.7">Every barista trains for 6 months before their first solo shift. We believe the person behind the bar matters as much as the bean.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team -->
+    <div class="text-center mb-4">
+      <span class="section-tag">The Team</span>
+      <h2 class="section-title">Meet the People Behind Your Cup</h2>
+      <div class="section-divider mx-auto"></div>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-6 col-md-3">
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face" class="team-card-img" alt="Kavya">
+          <h6 style="font-family:var(--font-display);color:var(--green-deep)">Kavya Mendis</h6>
+          <p style="font-size:0.8rem;color:var(--text-light)">Co-Founder & Head Roaster</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face" class="team-card-img" alt="Dinesh">
+          <h6 style="font-family:var(--font-display);color:var(--green-deep)">Dinesh Wickrama</h6>
+          <p style="font-size:0.8rem;color:var(--text-light)">Co-Founder & Operations</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=200&h=200&fit=crop&crop=face" class="team-card-img" alt="Sana">
+          <h6 style="font-family:var(--font-display);color:var(--green-deep)">Sana Fernando</h6>
+          <p style="font-size:0.8rem;color:var(--text-light)">Head Barista & Trainer</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=200&h=200&fit=crop&crop=face" class="team-card-img" alt="Arun">
+          <h6 style="font-family:var(--font-display);color:var(--green-deep)">Arun Rajapaksa</h6>
+          <p style="font-size:0.8rem;color:var(--text-light)">Sourcing & Sustainability</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ MENU PAGE ════════════ -->
+<div id="page-menu" class="page">
+  <div style="background:linear-gradient(135deg,var(--green-deep),var(--green-mid));padding:5rem 0 3rem;text-align:center;color:white">
+    <span class="section-tag" style="color:var(--green-pale)">Crafted with Love</span>
+    <h1 style="font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);color:white;margin-bottom:0.5rem">Our Full Menu</h1>
+    <p style="color:rgba(255,255,255,0.7);font-size:1rem">Single-origin, seasonal, always exceptional</p>
+  </div>
+  <div class="container section-pad">
+    <div class="d-flex flex-wrap gap-2 mb-4" id="menuFilters">
+      <!-- Loaded by JS -->
+    </div>
+    <div class="row g-4" id="menuGrid">
+      <div class="col-12 text-center py-4"><div class="spinner-border text-success" role="status"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ SERVICES PAGE ════════════ -->
+<div id="page-services" class="page">
+  <div style="background:var(--cream);padding:5rem 0 3rem;text-align:center">
+    <span class="section-tag">What We Offer</span>
+    <h1 class="section-title" style="font-size:clamp(2.5rem,5vw,4rem)">Our Services</h1>
+    <div class="section-divider mx-auto"></div>
+  </div>
+  <div class="container section-pad">
+    <!-- Service Showcase -->
+    <div class="row g-4 mb-5">
+      <div class="col-md-8">
+        <div class="service-card-large">
+          <img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=800&h=400&fit=crop" alt="Café Experience">
+          <div class="service-overlay">
+            <h4>Café Dine-In Experience</h4>
+            <p>Immerse yourself in our thoughtfully designed spaces — perfect for work, meeting, or simply being.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="service-card-large">
+          <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&h=400&fit=crop" alt="Roastery">
+          <div class="service-overlay">
+            <h4>Micro Roastery</h4>
+            <p>Watch your beans roasted fresh daily.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card-green h-100">
+          <div class="feature-icon-wrap">🎓</div>
+          <h5>Barista Workshops</h5>
+          <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.7;margin-bottom:1rem">Learn the art of espresso, latte art, and pour-over brewing from our SCA-certified baristas. Sessions run every Saturday.</p>
+          <div style="font-size:0.85rem;color:var(--green-soft);font-weight:500">From $45 per session</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-green h-100">
+          <div class="feature-icon-wrap">🏢</div>
+          <h5>Corporate Catering</h5>
+          <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.7;margin-bottom:1rem">Elevate your office events with our mobile barista service. We bring the full café experience to your workplace.</p>
+          <div style="font-size:0.85rem;color:var(--green-soft);font-weight:500">Custom pricing</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-green h-100">
+          <div class="feature-icon-wrap">📦</div>
+          <h5>Bean Subscription</h5>
+          <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.7;margin-bottom:1rem">Freshly roasted, single-origin beans delivered to your door monthly. Choose your roast profile and grind preference.</p>
+          <div style="font-size:0.85rem;color:var(--green-soft);font-weight:500">From $22/month</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-green h-100">
+          <div class="feature-icon-wrap">🎉</div>
+          <h5>Private Events</h5>
+          <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.7;margin-bottom:1rem">Host your milestone moments in our beautiful café. Birthdays, book clubs, team meetings — we cater to all occasions.</p>
+          <div style="font-size:0.85rem;color:var(--green-soft);font-weight:500">Enquire for pricing</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-green h-100">
+          <div class="feature-icon-wrap">🌐</div>
+          <h5>Online Store</h5>
+          <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.7;margin-bottom:1rem">Shop our full range of beans, brewing equipment, and branded merchandise online with island-wide delivery.</p>
+          <div style="font-size:0.85rem;color:var(--green-soft);font-weight:500">Shop now</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-green h-100">
+          <div class="feature-icon-wrap">💻</div>
+          <h5>Co-Work Friendly</h5>
+          <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.7;margin-bottom:1rem">High-speed WiFi, power points at every table, and a quiet work-friendly atmosphere. Day pass available for members.</p>
+          <div style="font-size:0.85rem;color:var(--green-soft);font-weight:500">Free with membership</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Opening Hours -->
+    <div class="bg-cream rounded-4 p-5 mt-5">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <span class="section-tag">Visit Us</span>
+          <h3 class="section-title">Opening Hours</h3>
+          <table style="width:100%;margin-top:1rem">
+            <tr style="padding:0.5rem 0;border-bottom:1px solid var(--cream-dark)">
+              <td style="padding:0.6rem 0;color:var(--text-mid);font-size:0.9rem">Monday – Friday</td>
+              <td style="text-align:right;font-weight:600;color:var(--green-deep);font-size:0.9rem">7:00 AM – 9:00 PM</td>
+            </tr>
+            <tr style="padding:0.5rem 0;border-bottom:1px solid var(--cream-dark)">
+              <td style="padding:0.6rem 0;color:var(--text-mid);font-size:0.9rem">Saturday</td>
+              <td style="text-align:right;font-weight:600;color:var(--green-deep);font-size:0.9rem">8:00 AM – 10:00 PM</td>
+            </tr>
+            <tr>
+              <td style="padding:0.6rem 0;color:var(--text-mid);font-size:0.9rem">Sunday</td>
+              <td style="text-align:right;font-weight:600;color:var(--green-deep);font-size:0.9rem">9:00 AM – 8:00 PM</td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-md-6 mt-4 mt-md-0">
+          <div class="map-placeholder">
+            <span>📍</span>
+            <div style="text-align:center">
+              <div style="font-family:var(--font-display);font-size:1.1rem;color:var(--green-deep)">42 Lake Drive, Colombo 3</div>
+              <div style="font-size:0.85rem;color:var(--text-light)">+ 15 Temple Rd, Kandy</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ CONTACT PAGE ════════════ -->
+<div id="page-contact" class="page">
+  <div style="background:var(--green-deep);padding:5rem 0 3rem;text-align:center;color:white">
+    <span class="section-tag" style="color:var(--green-pale)">Get In Touch</span>
+    <h1 style="font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);color:white;margin-bottom:0.5rem">Contact Us</h1>
+    <p style="color:rgba(255,255,255,0.7)">We'd love to hear from you</p>
+  </div>
+  <div class="container section-pad">
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <span class="section-tag">Contact Info</span>
+        <h2 class="section-title" style="font-size:2rem;margin-bottom:1.5rem">Reach Out Anytime</h2>
+
+        <div class="contact-info-item">
+          <span class="contact-info-icon">📍</span>
+          <div>
+            <div style="font-weight:600;color:var(--green-deep);margin-bottom:0.2rem">Visit Us</div>
+            <div style="font-size:0.875rem;color:var(--text-mid)">42 Lake Drive, Colombo 3<br>15 Temple Road, Kandy</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <span class="contact-info-icon">📞</span>
+          <div>
+            <div style="font-weight:600;color:var(--green-deep);margin-bottom:0.2rem">Call Us</div>
+            <div style="font-size:0.875rem;color:var(--text-mid)">+94 11 234 5678<br>+94 81 234 5678</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <span class="contact-info-icon">✉️</span>
+          <div>
+            <div style="font-weight:600;color:var(--green-deep);margin-bottom:0.2rem">Email Us</div>
+            <div style="font-size:0.875rem;color:var(--text-mid)">hello@greencoffeecafe.lk<br>events@greencoffeecafe.lk</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <span class="contact-info-icon">⏰</span>
+          <div>
+            <div style="font-weight:600;color:var(--green-deep);margin-bottom:0.2rem">Hours</div>
+            <div style="font-size:0.875rem;color:var(--text-mid)">Mon–Fri: 7am–9pm<br>Sat–Sun: 8am–10pm</div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2 mt-3">
+          <a class="social-icon" href="#"><i class="bi bi-instagram"></i></a>
+          <a class="social-icon" href="#"><i class="bi bi-facebook"></i></a>
+          <a class="social-icon" href="#"><i class="bi bi-twitter-x"></i></a>
+          <a class="social-icon" href="#"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="card-green p-4 p-md-5">
+          <h3 style="font-family:var(--font-display);color:var(--green-deep);margin-bottom:1.5rem">Send Us a Message</h3>
+          <form id="contactForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label-green">Your Name *</label>
+                <input type="text" id="contactName" class="form-control-green" placeholder="Amara Silva" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label-green">Email Address *</label>
+                <input type="email" id="contactEmail" class="form-control-green" placeholder="amara@email.com" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label-green">Subject *</label>
+                <input type="text" id="contactSubject" class="form-control-green" placeholder="How can we help?" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label-green">Message *</label>
+                <textarea id="contactMessage" class="form-control-green" rows="5" placeholder="Tell us more..." required style="resize:vertical"></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" id="contactBtn" class="btn-primary-green w-100" style="justify-content:center;padding:0.9rem">
+                  Send Message ✉️
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ LOGIN PAGE ════════════ -->
+<div id="page-login" class="page">
+  <div class="auth-split">
+    <div class="auth-left">
+      <div style="text-align:center;position:relative;z-index:1">
+        <div style="font-size:4rem;margin-bottom:1.5rem">🌿</div>
+        <h2 style="font-family:var(--font-display);color:white;font-size:2.5rem;margin-bottom:1rem">Welcome Back</h2>
+        <p style="color:rgba(255,255,255,0.7);line-height:1.7;max-width:300px;margin:0 auto 2rem">Your next perfect cup is waiting. Sign in to your Green Coffee account.</p>
+        <div style="background:rgba(255,255,255,0.1);border-radius:16px;padding:1.5rem;border:1px solid rgba(255,255,255,0.15)">
+          <div style="color:var(--green-pale);font-size:1.5rem;margin-bottom:0.5rem">★★★★★</div>
+          <p style="color:rgba(255,255,255,0.8);font-size:0.875rem;font-style:italic;margin-bottom:0.75rem">"My morning ritual starts here. Best coffee in Colombo, without question."</p>
+          <div style="font-size:0.78rem;color:rgba(255,255,255,0.5)">— Priya N., Member since 2021</div>
+        </div>
+      </div>
+    </div>
+    <div class="auth-right">
+      <div style="max-width:420px;margin:0 auto;width:100%">
+        <div onclick="navigate('home')" style="cursor:pointer;display:flex;align-items:center;gap:0.5rem;color:var(--text-light);font-size:0.85rem;margin-bottom:2rem">
+          ← Back to home
+        </div>
+        <h2 class="auth-title">Sign In</h2>
+        <p class="auth-subtitle">Don't have an account? <a onclick="navigate('register')" style="color:var(--green-soft);cursor:pointer;font-weight:500">Join us →</a></p>
+
+        <form id="loginForm" novalidate>
+          <div class="mb-3">
+            <label class="form-label-green">Email Address</label>
+            <input type="email" id="loginEmail" class="form-control-green" placeholder="your@email.com" required>
+          </div>
+          <div class="mb-4">
+            <label class="form-label-green">Password</label>
+            <div style="position:relative">
+              <input type="password" id="loginPassword" class="form-control-green" placeholder="••••••••" required style="padding-right:3rem">
+              <button type="button" class="toggle-password" data-target="loginPassword" style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1rem;color:var(--text-light)">👁</button>
+            </div>
+          </div>
+          <button type="submit" id="loginBtn" class="btn-primary-green w-100" style="justify-content:center;padding:0.9rem;font-size:1rem">
+            Sign In <span>→</span>
+          </button>
+        </form>
+
+        <div style="text-align:center;margin-top:1.5rem;padding:1rem;background:var(--cream);border-radius:12px">
+          <div style="font-size:0.78rem;color:var(--text-light);margin-bottom:0.4rem">Demo credentials</div>
+          <div style="font-size:0.82rem;color:var(--text-mid)">After registering, use your credentials here</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ REGISTER PAGE ════════════ -->
+<div id="page-register" class="page">
+  <div class="auth-split">
+    <div class="auth-left">
+      <div style="text-align:center;position:relative;z-index:1">
+        <div style="font-size:4rem;margin-bottom:1.5rem">☕</div>
+        <h2 style="font-family:var(--font-display);color:white;font-size:2.5rem;margin-bottom:1rem">Join the Club</h2>
+        <p style="color:rgba(255,255,255,0.7);line-height:1.7;max-width:300px;margin:0 auto 2rem">Become part of our growing community of coffee lovers and start earning rewards.</p>
+        <div style="display:flex;flex-direction:column;gap:0.75rem">
+          <div style="background:rgba(255,255,255,0.1);border-radius:12px;padding:0.9rem 1.2rem;display:flex;align-items:center;gap:0.75rem;border:1px solid rgba(255,255,255,0.1)">
+            <span style="font-size:1.4rem">🎁</span>
+            <div style="text-align:left">
+              <div style="color:white;font-size:0.875rem;font-weight:500">Welcome Reward</div>
+              <div style="color:rgba(255,255,255,0.6);font-size:0.78rem">50 bonus loyalty points on signup</div>
+            </div>
+          </div>
+          <div style="background:rgba(255,255,255,0.1);border-radius:12px;padding:0.9rem 1.2rem;display:flex;align-items:center;gap:0.75rem;border:1px solid rgba(255,255,255,0.1)">
+            <span style="font-size:1.4rem">⭐</span>
+            <div style="text-align:left">
+              <div style="color:white;font-size:0.875rem;font-weight:500">Earn Every Visit</div>
+              <div style="color:rgba(255,255,255,0.6);font-size:0.78rem">1 point per $1 spent</div>
+            </div>
+          </div>
+          <div style="background:rgba(255,255,255,0.1);border-radius:12px;padding:0.9rem 1.2rem;display:flex;align-items:center;gap:0.75rem;border:1px solid rgba(255,255,255,0.1)">
+            <span style="font-size:1.4rem">🎪</span>
+            <div style="text-align:left">
+              <div style="color:white;font-size:0.875rem;font-weight:500">Exclusive Events</div>
+              <div style="color:rgba(255,255,255,0.6);font-size:0.78rem">Member-only tastings & workshops</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="auth-right">
+      <div style="max-width:420px;margin:0 auto;width:100%">
+        <div onclick="navigate('home')" style="cursor:pointer;display:flex;align-items:center;gap:0.5rem;color:var(--text-light);font-size:0.85rem;margin-bottom:2rem">
+          ← Back to home
+        </div>
+        <h2 class="auth-title">Create Account</h2>
+        <p class="auth-subtitle">Already a member? <a onclick="navigate('login')" style="color:var(--green-soft);cursor:pointer;font-weight:500">Sign in →</a></p>
+
+        <form id="registerForm" novalidate>
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label-green">Full Name *</label>
+              <input type="text" id="regName" class="form-control-green" placeholder="Amara Silva" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label-green">Email Address *</label>
+              <input type="email" id="regEmail" class="form-control-green" placeholder="amara@email.com" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label-green">Phone (optional)</label>
+              <input type="tel" id="regPhone" class="form-control-green" placeholder="+94 77 123 4567">
+            </div>
+            <div class="col-12">
+              <label class="form-label-green">Password *</label>
+              <div style="position:relative">
+                <input type="password" id="regPassword" class="form-control-green" placeholder="At least 6 characters" required style="padding-right:3rem">
+                <button type="button" class="toggle-password" data-target="regPassword" style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1rem;color:var(--text-light)">👁</button>
+              </div>
+            </div>
+            <div class="col-12">
+              <label class="form-label-green">Confirm Password *</label>
+              <div style="position:relative">
+                <input type="password" id="regConfirm" class="form-control-green" placeholder="Repeat your password" required style="padding-right:3rem">
+                <button type="button" class="toggle-password" data-target="regConfirm" style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1rem;color:var(--text-light)">👁</button>
+              </div>
+            </div>
+            <div class="col-12">
+              <label style="display:flex;align-items:flex-start;gap:0.5rem;cursor:pointer;font-size:0.82rem;color:var(--text-mid)">
+                <input type="checkbox" required style="margin-top:3px;accent-color:var(--green-soft)">
+                I agree to the Terms of Service and Privacy Policy
+              </label>
+            </div>
+            <div class="col-12">
+              <button type="submit" id="registerBtn" class="btn-primary-green w-100" style="justify-content:center;padding:0.9rem;font-size:1rem">
+                Create Account <span>→</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ DASHBOARD PAGE ════════════ -->
+<div id="page-dashboard" class="page">
+  <div class="row g-0" style="min-height:calc(100vh - 70px)">
+    <!-- Sidebar -->
+    <div class="col-lg-2 col-md-3 dashboard-sidebar">
+      <div style="margin-bottom:2rem">
+        <div style="width:52px;height:52px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:0.75rem">☕</div>
+        <div style="color:white;font-weight:600;font-size:0.9rem" id="dashUserName">User</div>
+        <div style="color:rgba(255,255,255,0.5);font-size:0.75rem" id="dashUserEmail">email</div>
+      </div>
+      <nav>
+        <a class="sidebar-nav-item active" data-tab="overview" onclick="showDashTab('overview')">
+          <span class="icon">📊</span> Overview
+        </a>
+        <a class="sidebar-nav-item" data-tab="orders" onclick="showDashTab('orders')">
+          <span class="icon">☕</span> My Orders
+        </a>
+        <a class="sidebar-nav-item" data-tab="profile" onclick="showDashTab('profile')">
+          <span class="icon">👤</span> Profile
+        </a>
+        <a class="sidebar-nav-item" data-tab="rewards" onclick="showDashTab('rewards')">
+          <span class="icon">⭐</span> Rewards
+        </a>
+        <div style="border-top:1px solid rgba(255,255,255,0.1);margin:1rem 0"></div>
+        <a class="sidebar-nav-item" onclick="handleLogout()">
+          <span class="icon">🚪</span> Logout
+        </a>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-lg-10 col-md-9" style="background:var(--cream);padding:2rem">
+
+      <!-- Overview Tab -->
+      <div class="dash-tab" id="dash-overview">
+        <h2 style="font-family:var(--font-display);color:var(--green-deep);margin-bottom:0.3rem">Good morning! ☀️</h2>
+        <p style="color:var(--text-light);margin-bottom:2rem">Here's your Green Coffee dashboard.</p>
+
+        <div class="row g-4 mb-4">
+          <div class="col-6 col-md-3">
+            <div class="stat-card">
+              <div class="stat-card-icon" style="background:#e8f5e9"><span>⭐</span></div>
+              <div class="stat-card-value" id="dashPoints">0</div>
+              <div class="stat-card-label">Loyalty Points</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-card">
+              <div class="stat-card-icon" style="background:#fff3e0"><span>☕</span></div>
+              <div class="stat-card-value">12</div>
+              <div class="stat-card-label">Total Orders</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-card">
+              <div class="stat-card-icon" style="background:#e8eaf6"><span>🎁</span></div>
+              <div class="stat-card-value">2</div>
+              <div class="stat-card-label">Rewards Available</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-card">
+              <div class="stat-card-icon" style="background:#fce4ec"><span>📅</span></div>
+              <div class="stat-card-value" id="dashMemberSince">—</div>
+              <div class="stat-card-label">Member Since</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loyalty Progress -->
+        <div class="card-green mb-4">
+          <h5 style="margin-bottom:0.5rem">Loyalty Progress</h5>
+          <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:1rem" id="loyaltyProgressText">Loading...</p>
+          <div class="loyalty-bar">
+            <div class="loyalty-bar-fill" id="loyaltyProgress" style="width:0%"></div>
+          </div>
+          <div class="d-flex justify-content-between mt-2">
+            <span style="font-size:0.75rem;color:var(--text-light)">Silver</span>
+            <span style="font-size:0.75rem;color:var(--text-light)">Gold</span>
+            <span style="font-size:0.75rem;color:var(--text-light)">Platinum</span>
+          </div>
+        </div>
+
+        <!-- Quick actions -->
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="card-green" onclick="navigate('menu')" style="cursor:pointer">
+              <div style="display:flex;align-items:center;gap:1rem">
+                <span style="font-size:2rem">☕</span>
+                <div>
+                  <div style="font-weight:600;color:var(--green-deep)">Order Now</div>
+                  <div style="font-size:0.82rem;color:var(--text-light)">Browse our full menu</div>
+                </div>
+                <span style="margin-left:auto;color:var(--green-soft)">→</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card-green" onclick="navigate('contact')" style="cursor:pointer">
+              <div style="display:flex;align-items:center;gap:1rem">
+                <span style="font-size:2rem">💬</span>
+                <div>
+                  <div style="font-weight:600;color:var(--green-deep)">Get Help</div>
+                  <div style="font-size:0.82rem;color:var(--text-light)">Contact our team</div>
+                </div>
+                <span style="margin-left:auto;color:var(--green-soft)">→</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orders Tab -->
+      <div class="dash-tab" id="dash-orders" style="display:none">
+        <h2 style="font-family:var(--font-display);color:var(--green-deep);margin-bottom:0.3rem">My Orders</h2>
+        <p style="color:var(--text-light);margin-bottom:2rem">Your recent order history</p>
+        <div class="card-green">
+          <div style="text-align:center;padding:3rem;color:var(--text-light)">
+            <div style="font-size:4rem;margin-bottom:1rem">☕</div>
+            <div style="font-family:var(--font-display);font-size:1.2rem;color:var(--green-deep);margin-bottom:0.5rem">No orders yet</div>
+            <p style="font-size:0.9rem">Your delicious order history will appear here.</p>
+            <button class="btn-primary-green mt-2" onclick="navigate('menu')">Browse Menu →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Tab -->
+      <div class="dash-tab" id="dash-profile" style="display:none">
+        <h2 style="font-family:var(--font-display);color:var(--green-deep);margin-bottom:0.3rem">My Profile</h2>
+        <p style="color:var(--text-light);margin-bottom:2rem">Update your personal information</p>
+        <div class="card-green">
+          <form id="profileForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label-green">Full Name</label>
+                <input type="text" id="profileName" class="form-control-green" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label-green">Email Address</label>
+                <input type="email" id="profileEmail" class="form-control-green" disabled style="opacity:0.6;cursor:not-allowed">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label-green">Phone Number</label>
+                <input type="tel" id="profilePhone" class="form-control-green" placeholder="+94 77 123 4567">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label-green">Favourite Order</label>
+                <input type="text" id="profileFav" class="form-control-green" placeholder="e.g. Nitro Cold Brew, oat milk">
+              </div>
+              <div class="col-12 mt-2">
+                <button type="submit" id="profileUpdateBtn" class="btn-primary-green">Save Changes</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Rewards Tab -->
+      <div class="dash-tab" id="dash-rewards" style="display:none">
+        <h2 style="font-family:var(--font-display);color:var(--green-deep);margin-bottom:0.3rem">My Rewards</h2>
+        <p style="color:var(--text-light);margin-bottom:2rem">Earn points, unlock perks</p>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card-green" style="text-align:center;border:2px solid var(--green-pale)">
+              <div style="font-size:2.5rem;margin-bottom:0.75rem">☕</div>
+              <div style="font-family:var(--font-display);font-size:1.1rem;color:var(--green-deep);margin-bottom:0.3rem">Free Coffee</div>
+              <div style="font-size:0.82rem;color:var(--text-light);margin-bottom:1rem">Redeem any beverage under $6</div>
+              <div style="background:var(--green-pale);color:var(--green-deep);border-radius:50px;padding:0.3rem 0.8rem;font-size:0.8rem;font-weight:600;display:inline-block">100 pts</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card-green" style="text-align:center">
+              <div style="font-size:2.5rem;margin-bottom:0.75rem">🎂</div>
+              <div style="font-family:var(--font-display);font-size:1.1rem;color:var(--green-deep);margin-bottom:0.3rem">Birthday Treat</div>
+              <div style="font-size:0.82rem;color:var(--text-light);margin-bottom:1rem">Free cake slice on your birthday month</div>
+              <div style="background:var(--cream-dark);color:var(--text-mid);border-radius:50px;padding:0.3rem 0.8rem;font-size:0.8rem;font-weight:600;display:inline-block">Auto Applied</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card-green" style="text-align:center">
+              <div style="font-size:2.5rem;margin-bottom:0.75rem">🎓</div>
+              <div style="font-family:var(--font-display);font-size:1.1rem;color:var(--green-deep);margin-bottom:0.3rem">Free Workshop</div>
+              <div style="font-size:0.82rem;color:var(--text-light);margin-bottom:1rem">Attend a barista masterclass session</div>
+              <div style="background:var(--green-pale);color:var(--green-deep);border-radius:50px;padding:0.3rem 0.8rem;font-size:0.8rem;font-weight:600;display:inline-block">250 pts</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer id="mainFooter">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem">
+          <span style="font-size:1.8rem">🌿</span>
+          <span style="font-family:var(--font-display);font-size:1.4rem;color:white;font-weight:700">Green Coffee</span>
+        </div>
+        <p style="font-size:0.875rem;line-height:1.7;max-width:280px">Artisan coffee, sustainably sourced and expertly crafted. Our cafés are spaces for connection, reflection, and exceptional taste.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a class="social-icon" href="#"><i class="bi bi-instagram"></i></a>
+          <a class="social-icon" href="#"><i class="bi bi-facebook"></i></a>
+          <a class="social-icon" href="#"><i class="bi bi-twitter-x"></i></a>
+          <a class="social-icon" href="#"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h6 style="margin-bottom:1rem;font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase">Navigate</h6>
+        <a class="footer-link" onclick="navigate('home')">Home</a>
+        <a class="footer-link" onclick="navigate('about')">About</a>
+        <a class="footer-link" onclick="navigate('menu')">Menu</a>
+        <a class="footer-link" onclick="navigate('services')">Services</a>
+        <a class="footer-link" onclick="navigate('contact')">Contact</a>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h6 style="margin-bottom:1rem;font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase">Account</h6>
+        <a class="footer-link" onclick="navigate('login')">Sign In</a>
+        <a class="footer-link" onclick="navigate('register')">Register</a>
+        <a class="footer-link" onclick="goToDashboard()">Dashboard</a>
+        <a class="footer-link" href="#">Loyalty Program</a>
+      </div>
+      <div class="col-lg-4">
+        <h6 style="margin-bottom:1rem;font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase">Stay in Touch</h6>
+        <p style="font-size:0.85rem;margin-bottom:1rem">Subscribe for seasonal blends, events, and member exclusives.</p>
+        <div style="display:flex;gap:0.5rem">
+          <input type="email" placeholder="your@email.com" class="form-control-green" style="flex:1;font-size:0.85rem;padding:0.65rem 1rem">
+          <button class="btn-primary-green" style="padding:0.65rem 1.2rem;white-space:nowrap;font-size:0.85rem" onclick="showToast('Subscribed! ☕','success')">Join</button>
+        </div>
+        <p style="font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:0.75rem">No spam, unsubscribe anytime.</p>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <p style="font-size:0.8rem;margin:0">© 2024 Green Coffee Café. All rights reserved.</p>
+      <div style="display:flex;gap:1.5rem">
+        <a href="#" style="font-size:0.78rem;color:rgba(255,255,255,0.4);text-decoration:none">Privacy Policy</a>
+        <a href="#" style="font-size:0.78rem;color:rgba(255,255,255,0.4);text-decoration:none">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast Container -->
+<div id="toastContainer" class="toast-container-custom"></div>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- App JS -->
+<script src="js/app.js"></script>
+</body>
+</html>

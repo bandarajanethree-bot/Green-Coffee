@@ -1,0 +1,11 @@
+{
+  "name": "green-coffee-cafe",
+  "version": "1.0.0",
+  "description": "Green Coffee Café — Full Stack Web Application",
+  "scripts": {
+    "install:backend": "cd backend && npm install",
+    "start:backend": "cd backend && npm start",
+    "dev:backend": "cd backend && npm run dev",
+    "setup": "npm run install:backend && echo '\\n✅ Setup complete! See README.md for next steps.'"
+  }
+}
